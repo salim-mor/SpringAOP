@@ -5,6 +5,8 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 @Component
@@ -13,7 +15,10 @@ public class AroundHandler implements MethodInterceptor {
     private Object target ;
     private static Logger logger = Logger.getLogger(AroundHandler.class.getName());
 
-    public AroundHandler() {
+    public AroundHandler() throws IOException {
+        logger.addHandler(new FileHandler("log.xml"));
+        logger.setUseParentHandlers(false);
+
     }
 
     public AroundHandler(Object target) {
