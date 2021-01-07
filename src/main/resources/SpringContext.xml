@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="client" class="com.aspectexample.aop.beans.Client"/>
+    <bean id="aroundHandler" class="com.aspectexample.aop.invoc.AroundHandler"/>
+    <bean id="clientProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="client"/>
+        <property name="interceptorNames">
+            <list>
+                <value>aroundHandler</value>
+            </list>
+        </property>
+    </bean>
+</beans>
